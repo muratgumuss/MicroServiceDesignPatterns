@@ -1,1 +1,6 @@
-<Solution />
+<Solution>
+  <Project Path="Order.Api/Order.Api.csproj" />
+  <Project Path="Payment.Api/Payment.Api.csproj" />
+  <Project Path="Shared/Shared.csproj" />
+  <Project Path="Stock.Api/Stock.Api.csproj" />
+</Solution>
