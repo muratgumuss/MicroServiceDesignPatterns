@@ -1,6 +1,10 @@
 <Solution>
-  <Project Path="Order.Api/OrderChoreography.Api.csproj" />
-  <Project Path="Payment.Api/PaymentChoreography.Api.csproj" />
-  <Project Path="Shared/SharedChoreography.csproj" />
-  <Project Path="Stock.Api/StockChoreography.Api.csproj" />
+  <Project Path="OrderChoreography.Api/OrderChoreography.Api.csproj" />
+  <Project Path="OrderOrchestration.Api/OrderOrchestration.Api.csproj" Id="43ce5fd9-1183-41d3-9e72-b68403e9bf6d" />
+  <Project Path="PaymentChoreography.Api/PaymentChoreography.Api.csproj" />
+  <Project Path="PaymentOrchestration.Api/PaymentOrchestration.Api.csproj" Id="9b4e70e9-2821-412f-b296-30e96581c10e" />
+  <Project Path="SharedChoreography/SharedChoreography.csproj" />
+  <Project Path="SharedOrchestration/SharedOrchestration.csproj" Id="cf6b1d74-2076-494f-84e0-538dc9baa293" />
+  <Project Path="StockChoreography.Api/StockChoreography.Api.csproj" />
+  <Project Path="StockOrchestration.Api/StockOrchestration.Api.csproj" Id="f616004b-f660-4ff5-bcd3-2c4549c66a5a" />
 </Solution>

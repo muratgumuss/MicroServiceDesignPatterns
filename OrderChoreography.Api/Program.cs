@@ -4,6 +4,7 @@ using Order.Api.Consumers;
 using Order.Api.Models;
 using Shared;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
