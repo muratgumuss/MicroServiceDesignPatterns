@@ -1,9 +1,9 @@
 ﻿using MassTransit;
-using Order.Api.Models;
+using OrderChoreography.Api.Models;
 using Shared;
 
 
-namespace Order.Api.Consumers
+namespace OrderChoreography.Api.Consumers
 {
     public class PaymentCompletedEventConsumer : IConsumer<PaymentCompletedEvent>
     {

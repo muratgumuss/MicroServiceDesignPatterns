@@ -1,8 +1,8 @@
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Shared;
-using Stock.Api.Consumers;
-using Stock.Api.Models;
+using StockChoreography.Api.Consumers;
+using StockChoreography.Api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,11 +40,11 @@ var app = builder.Build();
 using(var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    dbContext.Stocks.AddRange(new List<Stock.Api.Models.Stock>
+    dbContext.Stocks.AddRange(new List<StockChoreography.Api.Models.Stock>
     {
-        new Stock.Api.Models.Stock { Id = 1, ProductId = 1, Count = 100 },
-        new Stock.Api.Models.Stock { Id = 2, ProductId = 2, Count = 200 },
-        new Stock.Api.Models.Stock { Id = 3, ProductId = 3, Count = 300 }
+        new StockChoreography.Api.Models.Stock { Id = 1, ProductId = 1, Count = 100 },
+        new StockChoreography.Api.Models.Stock { Id = 2, ProductId = 2, Count = 200 },
+        new StockChoreography.Api.Models.Stock { Id = 3, ProductId = 3, Count = 300 }
     });
     dbContext.SaveChanges();
 }

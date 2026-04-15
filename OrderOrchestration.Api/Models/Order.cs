@@ -1,4 +1,6 @@
-﻿namespace OrderChoreography.Api.Models
+﻿using System.Net;
+
+namespace OrderOrchestration.Api.Models
 {
     public class Order
     {

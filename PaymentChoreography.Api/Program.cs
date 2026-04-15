@@ -1,5 +1,5 @@
 using MassTransit;
-using Payment.Api.Consumer;
+using PaymentChoreography.Api.Consumer;
 using Shared;
 
 var builder = WebApplication.CreateBuilder(args);

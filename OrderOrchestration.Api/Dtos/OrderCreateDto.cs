@@ -1,4 +1,4 @@
-﻿namespace OrderChoreography.Api.Dtos
+﻿namespace OrderOrchestration.Api.Dtos
 {
     public class OrderCreateDto
     {

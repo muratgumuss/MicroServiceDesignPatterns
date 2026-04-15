@@ -1,4 +1,4 @@
-﻿namespace Stock.Api.Models
+﻿namespace StockChoreography.Api.Models
 {
     public class Stock
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Order.Api.Models
+namespace OrderChoreography.Api.Models
 {
     public class AppDbContext : DbContext
     {

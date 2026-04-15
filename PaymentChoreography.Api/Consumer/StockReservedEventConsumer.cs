@@ -1,7 +1,7 @@
 ﻿using MassTransit;
 using Shared;
 
-namespace Payment.Api.Consumer
+namespace PaymentChoreography.Api.Consumer
 {
     public class StockReservedEventConsumer : IConsumer<StockReservedEvent>
     {

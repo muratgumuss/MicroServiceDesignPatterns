@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace StockChoreography.Api.Models
+namespace OrderOrchestration.Api.Models
 {
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            
         }
-        public DbSet<Stock> Stocks { get; set; }   
+
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
     }
 }

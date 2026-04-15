@@ -1,7 +1,7 @@
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
-using Order.Api.Consumers;
-using Order.Api.Models;
+using OrderChoreography.Api.Consumers;
+using OrderChoreography.Api.Models;
 using Shared;
 
 

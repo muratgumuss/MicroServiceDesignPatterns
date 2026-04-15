@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Order.Api.Migrations
+namespace OrderChoreography.Api.Migrations
 {
     /// <inheritdoc />
     public partial class initial : Migration
