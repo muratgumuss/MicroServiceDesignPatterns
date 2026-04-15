@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace OrderChoreography.Api.Models
+namespace OrderOrchestration.Api.Models
 {
     public class OrderItem
     {

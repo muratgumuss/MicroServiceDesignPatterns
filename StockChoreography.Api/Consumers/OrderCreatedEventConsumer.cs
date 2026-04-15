@@ -1,9 +1,9 @@
 ﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Shared;
-using Stock.Api.Models;
+using StockChoreography.Api.Models;
 
-namespace Stock.Api.Consumers
+namespace StockChoreography.Api.Consumers
 {
     public class OrderCreatedEventConsumer : IConsumer<OrderCreatedEvent>
     {

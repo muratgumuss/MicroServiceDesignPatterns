@@ -1,10 +1,12 @@
 ﻿using MassTransit;
 using Microsoft.AspNetCore.Mvc;
-using OrderChoreography.Api.Dtos;
-using OrderChoreography.Api.Models;
+using OrderOrchestration.Api.Dtos;
+using OrderOrchestration.Api.Models;
 using Shared;
+using SharedOrchestration.Events;
+using SharedOrchestration.Interfaces;
 
-namespace OrderChoreography.Api.Controllers
+namespace OrderOrchestration.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -12,24 +14,23 @@ namespace OrderChoreography.Api.Controllers
     {
         private readonly AppDbContext _context;
 
-        private readonly IPublishEndpoint _publishEndpoint;
+        private readonly ISendEndpointProvider _sendEndpointProvider;
 
-        public OrdersController(AppDbContext context, IPublishEndpoint publishEndpoint)
+        public OrdersController(AppDbContext context, ISendEndpointProvider sendEndpointProvider)
         {
             _context = context;
-            _publishEndpoint = publishEndpoint;
+            _sendEndpointProvider = sendEndpointProvider;
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(OrderCreateDto orderCreate)
         {
-            var newOrder = new Models.Order
+            var newOrder = new Order
             {
                 BuyerId = orderCreate.BuyerId,
                 Status = OrderStatus.Suspend,
                 Address = new Address { Line = orderCreate.Address.Line, Province = orderCreate.Address.Province, District = orderCreate.Address.District },
-                CreatedDate = DateTime.Now,
-                FailMessage = string.Empty
+                CreatedDate = DateTime.Now
             };
 
             orderCreate.orderItems.ForEach(item =>
@@ -41,7 +42,7 @@ namespace OrderChoreography.Api.Controllers
 
             await _context.SaveChangesAsync();
 
-            var orderCreatedEvent = new OrderCreatedEvent()
+            var orderCreatedRequestEvent = new OrderCreatedRequestEvent()
             {
                 BuyerId = orderCreate.BuyerId,
                 OrderId = newOrder.Id,
@@ -57,10 +58,12 @@ namespace OrderChoreography.Api.Controllers
 
             orderCreate.orderItems.ForEach(item =>
             {
-                orderCreatedEvent.orderItems.Add(new OrderItemMessage { Count = item.Count, ProductId = item.ProductId });
+                orderCreatedRequestEvent.OrderItems.Add(new OrderItemMessage { Count = item.Count, ProductId = item.ProductId });
             });
 
-            await _publishEndpoint.Publish(orderCreatedEvent);
+            var sendEndpoint = await _sendEndpointProvider.GetSendEndpoint(new Uri($"queue:{RabbitMQSettingsConst.OrderSaga}"));
+
+            await sendEndpoint.Send<IOrderCreatedRequestEvent>(orderCreatedRequestEvent);
 
             return Ok();
         }

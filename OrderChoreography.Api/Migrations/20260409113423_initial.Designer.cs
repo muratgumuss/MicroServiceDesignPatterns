@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Order.Api.Models;
+using OrderChoreography.Api.Models;
 
 #nullable disable
 
-namespace Order.Api.Migrations
+namespace OrderChoreography.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20260409113423_initial")]

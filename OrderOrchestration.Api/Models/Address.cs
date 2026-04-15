@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace OrderChoreography.Api.Models
+namespace OrderOrchestration.Api.Models
 {
     [Owned]
     public class Address

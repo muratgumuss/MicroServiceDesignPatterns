@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Stock.Api.Models;
+using StockChoreography.Api.Models;
 
 namespace Stock.Api.Controllers
 {
