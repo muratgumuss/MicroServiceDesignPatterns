@@ -1,4 +1,4 @@
-﻿using Shared;
+﻿using SharedOrchestration;
 
 namespace SharedOrchestration.Interfaces
 {

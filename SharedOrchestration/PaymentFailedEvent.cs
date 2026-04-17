@@ -1,4 +1,4 @@
-﻿namespace Shared
+﻿namespace SharedOrchestration
 {
     public class PaymentFailedEvent
     {
