@@ -1,11 +1,16 @@
-﻿namespace Shared
-{
-    public class OrderCreatedEvent
-    {
-        public int OrderId { get; set; }
-        public string BuyerId { get; set; }
+﻿using SharedOrchestration.Interfaces;
 
-        public PaymentMessage Payment { get; set; }
-        public List<OrderItemMessage> orderItems { get; set; } = new List<OrderItemMessage>();
+namespace SharedOrchestration
+{
+    public class OrderCreatedEvent : IOrderCreatedEvent
+    {
+        public OrderCreatedEvent(Guid correlationId)
+        {
+            CorrelationId = correlationId;
+        }
+
+        public List<OrderItemMessage> OrderItems { get; set; }
+
+        public Guid CorrelationId { get; }
     }
 }

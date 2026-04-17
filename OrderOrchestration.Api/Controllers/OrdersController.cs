@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OrderOrchestration.Api.Dtos;
 using OrderOrchestration.Api.Models;
-using Shared;
+using SharedOrchestration;
 using SharedOrchestration.Events;
 using SharedOrchestration.Interfaces;
 
@@ -30,7 +30,8 @@ namespace OrderOrchestration.Api.Controllers
                 BuyerId = orderCreate.BuyerId,
                 Status = OrderStatus.Suspend,
                 Address = new Address { Line = orderCreate.Address.Line, Province = orderCreate.Address.Province, District = orderCreate.Address.District },
-                CreatedDate = DateTime.Now
+                CreatedDate = DateTime.Now,
+                FailMessage = string.Empty
             };
 
             orderCreate.orderItems.ForEach(item =>
