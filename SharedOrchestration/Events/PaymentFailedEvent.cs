@@ -1,6 +1,6 @@
 ﻿using SharedOrchestration.Interfaces;
 
-namespace SharedOrchestration
+namespace SharedOrchestration.Events
 {
     public class PaymentFailedEvent : IPaymentFailedEvent
     {

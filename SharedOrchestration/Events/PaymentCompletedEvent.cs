@@ -1,6 +1,7 @@
-﻿using SharedOrchestration.Interfaces;
+﻿
+using SharedOrchestration.Interfaces;
 
-namespace SharedOrchestration
+namespace SharedOrchestration.Events
 {
     public class PaymentCompletedEvent : IPaymentCompletedEvent
     {
@@ -8,7 +9,6 @@ namespace SharedOrchestration
         {
             CorrelationId = correlationId;
         }
-
         public Guid CorrelationId { get; }
     }
 }

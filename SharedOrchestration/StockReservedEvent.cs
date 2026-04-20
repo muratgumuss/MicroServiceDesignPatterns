@@ -1,10 +1,16 @@
-﻿namespace SharedOrchestration
+﻿using SharedOrchestration.Interfaces;
+
+namespace SharedOrchestration
 {
-    public class StockReservedEvent
+    public class StockReservedEvent : IStockReservedEvent
     {
-        public int OrderId { get; set; }
-        public string BuyerId { get; set; }
-        public PaymentMessage Payment { get; set; }
-        public List<OrderItemMessage> OrderItems { get; set; } = new List<OrderItemMessage>();
+        public StockReservedEvent(Guid correlationId)
+        {
+            CorrelationId = correlationId;
+        }
+
+        public List<OrderItemMessage> OrderItems { get; set; }
+
+        public Guid CorrelationId { get; }
     }
 }
