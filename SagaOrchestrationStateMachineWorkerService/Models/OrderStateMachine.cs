@@ -11,14 +11,14 @@ namespace SagaOrchestrationStateMachineWorkerService.Models
         public Event<IStockReservedEvent> StockReservedEvent { get; set; }
         public Event<IStockNotReservedEvent> StockNotReservedEvent { get; set; }
 
-        //public Event<IPaymentCompletedEvent> PaymentCompletedEvent { get; set; }
+        public Event<IPaymentCompletedEvent> PaymentCompletedEvent { get; set; }
 
-        //public Event<IPaymentFailedEvent> PaymentFailedEvent { get; set; }
+        public Event<IPaymentFailedEvent> PaymentFailedEvent { get; set; }
         public State OrderCreated { get; private set; }
         public State StockReserved { get; private set; }
         public State StockNotReserved { get; private set; }
-        //public State PaymentCompleted { get; private set; }
-        //public State PaymentFailed { get; private set; }
+        public State PaymentCompleted { get; private set; }
+        public State PaymentFailed { get; private set; }
 
         public OrderStateMachine()
         {
@@ -27,10 +27,10 @@ namespace SagaOrchestrationStateMachineWorkerService.Models
             Event(() => OrderCreatedRequestEvent,
                 y => y.CorrelateBy<int>(x => x.OrderId, z => z.Message.OrderId).SelectId(context => Guid.NewGuid()));
 
-            //Event(() => StockReservedEvent, x => x.CorrelateById(y => y.Message.CorrelationId));
-            //Event(() => StockNotReservedEvent, x => x.CorrelateById(y => y.Message.CorrelationId));
-            //Event(() => PaymentCompletedEvent, x => x.CorrelateById(y => y.Message.CorrelationId));
-            //Event(() => PaymentFailedEvent, x => x.CorrelateById(y => y.Message.CorrelationId));
+            Event(() => StockReservedEvent, x => x.CorrelateById(y => y.Message.CorrelationId));
+            Event(() => StockNotReservedEvent, x => x.CorrelateById(y => y.Message.CorrelationId));
+            Event(() => PaymentCompletedEvent, x => x.CorrelateById(y => y.Message.CorrelationId));
+            Event(() => PaymentFailedEvent, x => x.CorrelateById(y => y.Message.CorrelationId));
 
 
             Initially(
@@ -79,21 +79,21 @@ namespace SagaOrchestrationStateMachineWorkerService.Models
                     })
             );
 
-            //During(StockReserved,
-            //    When(PaymentCompletedEvent).TransitionTo(PaymentCompleted)
-            //        .Publish(context => new OrderRequestCompletedEvent() { OrderId = context.Saga.OrderId })
-            //        .Then(context => { Console.WriteLine($"PaymentCompletedEvent After : {context.Saga}"); })
-            //        .Finalize(),
-            //    When(PaymentFailedEvent)
-            //        .Publish(context => new OrderRequestFailedEvent()
-            //        { OrderId = context.Saga.OrderId, Reason = context.Message.Reason })
-            //        .Send(new Uri($"queue:{RabbitMQSettingsConst.StockRollBackMessageQueueName}"),
-            //            context => new StockRollbackMessage() { OrderItems = context.Message.OrderItems })
-            //        .TransitionTo(PaymentFailed).Then(context =>
-            //        {
-            //            Console.WriteLine($"PaymentFailedEvent After : {context.Saga}");
-            //        })
-            //);
+            During(StockReserved,
+                When(PaymentCompletedEvent).TransitionTo(PaymentCompleted)
+                    .Publish(context => new OrderRequestCompletedEvent() { OrderId = context.Saga.OrderId })
+                    .Then(context => { Console.WriteLine($"PaymentCompletedEvent After : {context.Saga}"); })
+                    .Finalize()
+                //When(PaymentFailedEvent)
+                //    .Publish(context => new OrderRequestFailedEvent()
+                //    { OrderId = context.Saga.OrderId, Reason = context.Message.Reason })
+                //    .Send(new Uri($"queue:{RabbitMQSettingsConst.StockRollBackMessageQueueName}"),
+                //        context => new StockRollbackMessage() { OrderItems = context.Message.OrderItems })
+                //    .TransitionTo(PaymentFailed).Then(context =>
+                //    {
+                //        Console.WriteLine($"PaymentFailedEvent After : {context.Saga}");
+                //    })
+            );
 
             // SetCompletedWhenFinalized();
         }

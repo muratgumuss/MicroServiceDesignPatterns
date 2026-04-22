@@ -1,6 +1,6 @@
 ﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
-using SharedOrchestration;
+using SharedOrchestration.Events;
 using SharedOrchestration.Interfaces;
 using StockOrchestration.Api.Models;
 

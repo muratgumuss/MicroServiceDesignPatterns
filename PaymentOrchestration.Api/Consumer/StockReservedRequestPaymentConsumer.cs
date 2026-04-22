@@ -1,5 +1,5 @@
 ﻿using MassTransit;
-using SharedOrchestration;
+using SharedOrchestration.Events;
 using SharedOrchestration.Interfaces;
 
 namespace PaymentOrchestration.Api.Consumer
