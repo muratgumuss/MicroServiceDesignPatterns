@@ -2,6 +2,7 @@
 using SharedOrchestration;
 using SharedOrchestration.Events;
 using SharedOrchestration.Interfaces;
+using SharedOrchestration.Messages;
 
 namespace SagaOrchestrationStateMachineWorkerService.Models
 {
@@ -83,19 +84,19 @@ namespace SagaOrchestrationStateMachineWorkerService.Models
                 When(PaymentCompletedEvent).TransitionTo(PaymentCompleted)
                     .Publish(context => new OrderRequestCompletedEvent() { OrderId = context.Saga.OrderId })
                     .Then(context => { Console.WriteLine($"PaymentCompletedEvent After : {context.Saga}"); })
-                    .Finalize()
-                //When(PaymentFailedEvent)
-                //    .Publish(context => new OrderRequestFailedEvent()
-                //    { OrderId = context.Saga.OrderId, Reason = context.Message.Reason })
-                //    .Send(new Uri($"queue:{RabbitMQSettingsConst.StockRollBackMessageQueueName}"),
-                //        context => new StockRollbackMessage() { OrderItems = context.Message.OrderItems })
-                //    .TransitionTo(PaymentFailed).Then(context =>
-                //    {
-                //        Console.WriteLine($"PaymentFailedEvent After : {context.Saga}");
-                //    })
+                    .Finalize(),
+                When(PaymentFailedEvent)
+                    .Publish(context => new OrderRequestFailedEvent()
+                    { OrderId = context.Saga.OrderId, Reason = context.Message.Reason })
+                    .Send(new Uri($"queue:{RabbitMQSettingsConst.StockRollBackMessageQueueName}"),
+                        context => new StockRollbackMessage() { OrderItems = context.Message.OrderItems })
+                    .TransitionTo(PaymentFailed).Then(context =>
+                    {
+                        Console.WriteLine($"PaymentFailedEvent After : {context.Saga}");
+                    })
             );
 
-            // SetCompletedWhenFinalized();
+            SetCompletedWhenFinalized();
         }
     }
 }
