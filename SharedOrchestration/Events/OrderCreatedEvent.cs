@@ -1,15 +1,14 @@
 ﻿using SharedOrchestration.Interfaces;
 
-namespace SharedOrchestration
+namespace SharedOrchestration.Events
 {
-    public class PaymentFailedEvent : IPaymentFailedEvent
+    public class OrderCreatedEvent : IOrderCreatedEvent
     {
-        public PaymentFailedEvent(Guid correlationId)
+        public OrderCreatedEvent(Guid correlationId)
         {
             CorrelationId = correlationId;
         }
 
-        public string Reason { get; set; }
         public List<OrderItemMessage> OrderItems { get; set; }
 
         public Guid CorrelationId { get; }

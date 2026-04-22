@@ -1,10 +1,10 @@
 ﻿using SharedOrchestration.Interfaces;
 
-namespace SharedOrchestration
+namespace SharedOrchestration.Events
 {
-    public class OrderCreatedEvent : IOrderCreatedEvent
+    public class StockReservedEvent : IStockReservedEvent
     {
-        public OrderCreatedEvent(Guid correlationId)
+        public StockReservedEvent(Guid correlationId)
         {
             CorrelationId = correlationId;
         }
