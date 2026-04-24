@@ -1,4 +1,6 @@
 <Solution>
+  <Project Path="EventSourcing.Api/EventSourcing.Api.csproj" Id="3f3f04e4-2c05-49e9-9e59-c0070abcd00e" />
+  <Project Path="EventSourcing.Shared/EventSourcing.Shared.csproj" Id="2bf124da-8982-469c-9fcc-0ef440215f70" />
   <Project Path="OrderChoreography.Api/OrderChoreography.Api.csproj" />
   <Project Path="OrderOrchestration.Api/OrderOrchestration.Api.csproj" Id="43ce5fd9-1183-41d3-9e72-b68403e9bf6d" />
   <Project Path="PaymentChoreography.Api/PaymentChoreography.Api.csproj" />
