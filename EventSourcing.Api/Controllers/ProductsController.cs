@@ -1,7 +1,7 @@
 ﻿using EventSourcing.Api.Commands;
 using EventSourcing.Api.Dtos;
+using EventSourcing.Api.Queries;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventSourcing.Api.Controllers
@@ -17,11 +17,11 @@ namespace EventSourcing.Api.Controllers
             _mediator = mediator;
         }
 
-        //[HttpGet("{userId}")]
-        //public async Task<IActionResult> GetAllListByUserId(int userId)
-        //{
-        //    return Ok(await _mediator.Send(new GetProductAllListByUserId() { UserId = userId }));
-        //}
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetAllListByUserId(int userId)
+        {
+            return Ok(await _mediator.Send(new GetProductAllListByUserId() { UserId = userId }));
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateProductDto createProductDto)
