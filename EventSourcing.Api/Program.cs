@@ -1,3 +1,4 @@
+using EventSourcing.Api.BackgroundServices;
 using EventSourcing.Api.EventStores;
 using EventSourcing.Api.Models;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
 });
-
+builder.Services.AddHostedService<ProductReadModelEventStore>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

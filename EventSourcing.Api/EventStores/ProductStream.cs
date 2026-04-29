@@ -9,6 +9,8 @@ namespace EventSourcing.Api.EventStores
         public static string StreamName => "ProductStream";
         public static string GroupName => "agroup";
 
+        public static string ReplayGroupName => "replay";
+
         public ProductStream(IEventStoreConnection eventStoreConnection) : base(StreamName, eventStoreConnection)
         {
         }
