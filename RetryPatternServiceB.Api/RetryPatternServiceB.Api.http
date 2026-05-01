@@ -1,0 +1,6 @@
+@RetryPatternServiceB.Api_HostAddress = http://localhost:5002
+
+GET {{RetryPatternServiceB.Api_HostAddress}}/api/products/1
+Accept: application/json
+
+###
