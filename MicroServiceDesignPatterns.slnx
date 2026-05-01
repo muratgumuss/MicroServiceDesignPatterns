@@ -5,6 +5,8 @@
   <Project Path="OrderOrchestration.Api/OrderOrchestration.Api.csproj" Id="43ce5fd9-1183-41d3-9e72-b68403e9bf6d" />
   <Project Path="PaymentChoreography.Api/PaymentChoreography.Api.csproj" />
   <Project Path="PaymentOrchestration.Api/PaymentOrchestration.Api.csproj" Id="9b4e70e9-2821-412f-b296-30e96581c10e" />
+  <Project Path="RetryPatternServiceA.Api/RetryPatternServiceA.Api.csproj" Id="748186bc-fae6-45f7-869c-d3cda130353d" />
+  <Project Path="RetryPatternServiceB.Api/RetryPatternServiceB.Api.csproj" Id="cf075dcb-0c6e-41e3-8505-e3aec8816e3e" />
   <Project Path="SagaOrchestrationStateMachineWorkerService/SagaOrchestrationStateMachineWorkerService.csproj" Id="c1eae44f-93ce-426a-a547-afa259186dc2" />
   <Project Path="SharedChoreography/SharedChoreography.csproj" />
   <Project Path="SharedOrchestration/SharedOrchestration.csproj" Id="cf6b1d74-2076-494f-84e0-538dc9baa293" />
